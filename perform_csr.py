@@ -10,8 +10,6 @@ from cryptography.hazmat.backends import default_backend
 
 import json
 
-from OpenSSL.crypto import X509
-
 import sys
 
 oid_name_map = {
@@ -72,7 +70,6 @@ def perform_csr(args):
     json_resp = json.loads(response.text)
 
     with open(cert_out, "w") as f:
-        #cert_bytes = json_resp['pnm2m:signresp']['clientcert']
         f.write(json_resp['pnm2m:signresp']['clientcert'])
     
     request = generate_csr_confirmation_request(json_resp)
